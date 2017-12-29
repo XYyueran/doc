@@ -1,0 +1,17 @@
+Webpack的核心哲学思想
+1.一切都是模块——就像JS文件可以视作“模块”一样，其他所有的一切（CSS，图片，HTML）都可以被视作模块，通过require加载。。
+2.模块加载器会把所有的模块最终打包生成一个巨大的“bundle.js”文件，并且会一直不停进行加载！所以Webpack通过大量的特性去分割你的代码，生成多个“bundle”片段，并且异步地加载项目的不同部分。(摘自网上)
+
+自己按照文档实验了一个小例子，用于自己记忆与存档，
+
+2017-12-29
+loaders中 test--文件识别规则， loade--代表加载气名字， exclude--排除某个路径下的所有文件
+devtool:'source-map'生成的不知道map文件有什么用
+output.publicPath //指定资源目录,用于设置输出资源路径前缀
+备注：
+url-loader 通过设置limit来判断图片是转化为base64还是直接路径打包。
+url-loader 需要导入file-loader，
+在url-loader中，如不设置output.publicPath,则输入路径的路径将是配置中的目录路径。
+plugins 中有许多插件，运用在打包过程中。暂时没有去实践
+
+
