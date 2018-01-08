@@ -7,11 +7,34 @@ Webpack的核心哲学思想
 2017-12-29
 loaders中 test--文件识别规则， loade--代表加载气名字， exclude--排除某个路径下的所有文件
 devtool:'source-map'生成的不知道map文件有什么用
-output.publicPath //指定资源目录,用于设置输出资源路径前缀
+output.publicPath //#!D#1-2当配置过该属性后，打包文件中所有通过相对路径引用的资源都会被配置的路径所替换。
 备注：
 url-loader 通过设置limit来判断图片是转化为base64还是直接路径打包。
 url-loader 需要导入file-loader，
 在url-loader中，如不设置output.publicPath,则输入路径的路径将是配置中的目录路径。
 plugins 中有许多插件，运用在打包过程中。暂时没有去实践
 
+2018-1-2 14:38:26
+参考 vue-cli的一个webpack配注，主要看配置文件和各个插件的用法
+脚手架里面有三个配置分别是webpack.base.conf.js、webpack.dev.conf.js、webpack.prod.conf.js，搭配package.json的
+"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+"start": "npm run dev",
+"build": "node build/build.js"
+可以看出。dev 模式下跑webpack.dev.conf.js、start 即为运行dev模式，build 则运行build
+.js 这个文件
+vue-cli的webpack 是通过 多个配置文件通过webpack-merge 进行配置文件合并后成为一个配置文件后进行操作
+utils.js 主要是一个工具方法。其中包括 设置当前环境值，自定义加载器路径和一个报错弹出方法
+
+主要插件
+extract-text-webpack-plugin 将文件提取出来单独打包成一个文件
+html-webpack-plugin 用来创建创建html入口文件
+friendly-errors-webpack-plugin 这个插件能够更好的在终端看到webpack运行时的错误和警告等信息。可以提升开发体验。
+compression-webpack-plugin 开启gzip
+copy-webpack-plugin 在webpack中拷贝文件和文件夹
+optimize-css-assets-webpack-plugin 压缩css
+uglifyjs-webpack-plugin 压缩js
+还有一些 webpack 的插件功能。
+详细的注释已经在代码中。
+
+下一步准备，准备自己写一个多页面的webpack 配置项 ing。。。。
 
